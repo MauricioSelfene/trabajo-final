@@ -24,6 +24,7 @@ usuario
 	clave
 	rol   ADMIN - VENDEDOR
 
+desarrollo:
 
 trabajar con un inicio de sesion en jwt 
 
