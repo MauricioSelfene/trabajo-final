@@ -35,3 +35,12 @@ Rol admin puede realizar CRUD sobre todas las colecciones - debe estar logeado
 Rol vendedor solo puede CRUD Productos - debe estar logeado
 
 "Hola Mundo"
+
+
+GIT 
+git add .
+git commit -m "..."
+git checkout (dev) 
+git pull (todo lo ultimo de dev)
+git checkout feature-ms
+git merge dev (estando en mi rama quiero mergear los cambios de dev)
