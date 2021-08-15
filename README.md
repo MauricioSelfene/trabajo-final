@@ -27,6 +27,7 @@ usuario
 desarrollo:
 
 trabajar con un inicio de sesion en jwt 
+asda
 
 Usuario cliente o Publico solo puede buscar productos 
 
