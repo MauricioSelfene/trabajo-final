@@ -27,10 +27,11 @@ usuario
 desarrollo:
 
 trabajar con un inicio de sesion en jwt 
-asda
 
 Usuario cliente o Publico solo puede buscar productos 
 
 Rol admin puede realizar CRUD sobre todas las colecciones - debe estar logeado
 
 Rol vendedor solo puede CRUD Productos - debe estar logeado
+
+"Hola Mundo"
