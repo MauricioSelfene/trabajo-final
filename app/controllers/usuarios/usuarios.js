@@ -1,7 +1,7 @@
 const { generaJWT } = require('../../helpers/generarToken');
 const Usuario = require('../../models/usuarios');
 
-async function e(req, res) {
+async function LoginUsuario(req, res) {
 
     const authorization = req.headers.authorization.split(' ')[1];
     const auth = Buffer.from(authorization, 'base64').toString('ascii').split(':');
@@ -9,7 +9,7 @@ async function e(req, res) {
     const usuario = auth[0];
     const clave = auth[1];
 
-    const result = await Usuario.findOne({ usuario, clave });
+    const result = await Usuario.find({ usuario, clave });
     if (!result)
         return res.status(403).json({
             mensaje: 'Login incorrecto'
