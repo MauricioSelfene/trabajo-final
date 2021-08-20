@@ -8,8 +8,8 @@ if (typeof process.env.AMBIENTE == 'undefined') {
 
 if (process.env.AMBIENTE && process.env.AMBIENTE.trim() == 'pro') {
     console.log('\x1b[32m%s\x1b[0m', 'Entorno de Produccion');
-    process.env.Mongo = 'mongodb://localhost:27017/dbpaises';
+    process.env.Mongo = 'mongodb://localhost:27017/dbNode';
 } else {
     console.log('\x1b[36m%s\x1b[0m', 'Entorno de Desarrollo');
-    process.env.Mongo = 'mongodb://localhost:27017/dbpaisesdev';
+    process.env.Mongo = 'mongodb://localhost:27017/dbNodeDev';
 }
