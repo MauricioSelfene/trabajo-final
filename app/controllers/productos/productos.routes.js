@@ -1,10 +1,10 @@
 const express = require("express");
 const { check } = require("express-validator");
 const app = express();
-const { validaJWTAdm } = require("../../middleware/validaJWT");
+const { validaJWTAdmVend } = require("../../middleware/validaJWT");
 const { existeProducto } = require("../../helpers/validacionesDB.js");
 const { validacionesCampos } = require("../../middleware/validaciones.js");
-const { GetProductos, NewProductos, GetProducto, UpdateProductos } = require("./productos");
+const { GetProductos, NewProductos, GetProducto, UpdateProductos, DelProducto } = require("./productos");
 
 // GET
 async function getProductos(req, res) {
@@ -45,20 +45,30 @@ async function updateProducto(req, res) {
     }
 }
 
+// DEL
+async function delProducto(req, res) {
+    try {
+        const resp = await DelProducto(req.params.id);
+        res.status(200).send(resp);
+    } catch (error) {
+        res.status(500).send(`Error detectado${error}`);
+    }
+}
+
 
 //app.get("/api/prodcutos/:idProductos", [validaJWTAdm], getProducto);
 app.get("/api/productos/:idProductos", getProducto);
 
-// Login
 app.get("/api/productos", getProductos);
 
 
 app.post("/api/productos", [
-        validaJWTAdm,
+        validaJWTAdmVend,
         check("idProducto", "El id del producto es requerido.").not().isEmpty(),
         check("idProducto").custom(existeProducto),
+        check("nombre", "El nombre es requerido.").not().isEmpty(),
         check("precio", "El precio es requerido.").not().isEmpty(),
-        check("idCategoria", "La categoria es requerida.").isEmpty(),
+        check("idCategoria", "La categoria es requerida.").not().isEmpty(),
         check("estado", "El estado es requerido.").not().isEmpty(),
         check("imagen", "La imagen es requerida").not().isEmpty(),
         check("descripcion", "La descripcion es requerida").not().isEmpty(),
@@ -68,16 +78,18 @@ app.post("/api/productos", [
 
 
 app.post("/api/productos/:idProductos", [
-        validaJWTAdm,
-        check("idProducto", "El id del producto es requerido.").not().isEmpty(),
-        check("idProducto").custom(existeProducto),
+        validaJWTAdmVend,
+        // check("idProducto").custom(existeProducto),
         check("precio", "El precio es requerido.").not().isEmpty(),
-        check("idCategoria", "La categoria es requerida.").isEmpty(),
+        check("idCategoria", "La categoria es requerida.").not().isEmpty(),
         check("estado", "El estado es requerido.").not().isEmpty(),
         check("imagen", "La imagen es requerida").not().isEmpty(),
         check("descripcion", "La descripcion es requerida").not().isEmpty(),
         validacionesCampos,
     ],
     updateProducto);
+
+app.delete("/api/producto/:id", [validaJWTAdmVend], delProducto);
+
 
 module.exports = app;

@@ -1,7 +1,7 @@
 const Productos = require("../../models/productos");
 
 async function GetProductos() {
-  return await Productos.find({});
+    return await Productos.find({});
 }
 
 async function GetProducto(id) {
@@ -9,43 +9,49 @@ async function GetProducto(id) {
 }
 
 async function NewProductos(dProductos) {
-  const {
-    idProducto,
-    nombre,
-    precio,
-    idCategoria,
-    estado,
-    imagen,
-    descripcion,
-    creacion,
-    modificacion,
-  } = dProductos;
-  return await Productos.create({
-    idProducto,
-    nombre,
-    precio,
-    idCategoria,
-    estado,
-    imagen,
-    descripcion,
-    creacion,
-    modificacion,
-  });
+    const {
+        idProducto,
+        nombre,
+        precio,
+        idCategoria,
+        estado,
+        imagen,
+        descripcion,
+        creacion,
+        modificacion,
+    } = dProductos;
+    return await Productos.create({
+        idProducto,
+        nombre,
+        precio,
+        idCategoria,
+        estado,
+        imagen,
+        descripcion,
+        creacion,
+        modificacion,
+    });
 }
 
 
 async function UpdateProductos(id, body) {
     if (!id) {
-      return { error: true, msg: "Campo producto es requerido" };
+        return { error: true, msg: "Campo producto es requerido" };
     }
     return await Productos.updateOne({ idProducto: id }, { $set: body });
-  }
+}
+
+async function DelProducto(idProd) {
+    return await Productos.deleteOne({ idProducto: idProd });
+}
+
 
 module.exports = {
-  GetProductos,
-  GetProducto,
-  NewProductos,
-  UpdateProductos,
+    GetProductos,
+    GetProducto,
+    NewProductos,
+    UpdateProductos,
+    DelProducto
 };
 
 /*

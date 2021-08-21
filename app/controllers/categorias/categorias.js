@@ -1,29 +1,34 @@
 const Categoria = require("../../models/categorias");
 
 async function GetCategorias() {
-    return await categoria.find({});
-  }
-  
-  async function GetCategoria(idCategoria) {
-    return await Categoria.findOne({ id: idCategoria });
-  }
-  
-  async function NewCategoria(idCategoria) {
-    const { Nombre, estado } = idCategoria;
-    return await Categoria.create({ Nombre, estado });
-  }
+    return await Categoria.find({});
+}
 
-  //revisar
-  async function UpdateCategoria(idCat, body) {
+async function GetCategoria(idCategoria) {
+    return await Categoria.findOne({ idCategoria });
+}
+
+async function NewCategoria(dataBody) {
+    const { idCategoria, nombre, estado } = dataBody;
+    return await Categoria.create({ idCategoria, nombre, estado });
+}
+
+//revisar
+async function UpdateCategoria(idCat, body) {
     if (!idCat) {
-      return { error: true, msg: "Campo Nombre es requerido" };
+        return { error: true, msg: "Parametro idCategoria es requerido" };
     }
-    return await Usuario.updateOne({ idCategoria: idCat }, { $set: body });
-  }
+    return await Categoria.updateOne({ idCategoria: idCat }, { $set: body });
+}
+
+async function DelCategorias(idCat) {
+    return await Categoria.deleteOne({ idCategoria: idCat });
+}
 
 module.exports = {
     GetCategorias,
     GetCategoria,
     NewCategoria,
     UpdateCategoria,
+    DelCategorias
 }

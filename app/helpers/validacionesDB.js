@@ -9,22 +9,22 @@ const existeUsuario = async(usuario) => {
         throw new Error(`El usuario ${usuario} ya existe`);
 };
 
-const existeCategoria = async (idCategoria) => {
-  const idDB = await categorias.findOne({ idCategoria });
+const existeCategoria = async(idCategoria) => {
+    const idDB = await categorias.findOne({ idCategoria });
 
-  if (idDB) throw new Error(`El id:  ${idCategoria} ya existe`);
-  
+    if (idDB) throw new Error(`El id:  ${idCategoria} ya existe`);
+
 };
 
 const existeProducto = async(idProducto) => {
     const userDB = await productoM.findOne({ idProducto });
 
-    if (userDB) throw new Error(`El usuario ${producto} ya existe`);
-    else throw new Error(`El producto ${producto} no existe`);
+    if (userDB) throw new Error(`El producto ${idProducto} ya existe`);
 };
 
 
 module.exports = {
     existeUsuario,
     existeProducto,
+    existeCategoria
 };
