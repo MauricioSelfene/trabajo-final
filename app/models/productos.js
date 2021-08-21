@@ -1,10 +1,10 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-const productos = new Schema({
+const productoSchema = new Schema({
 
     idProducto: {
-        type: String,
+        type: Number,
         required:[true, 'El id del producto es obligatorio'],
         unique: true
     },
@@ -12,13 +12,13 @@ const productos = new Schema({
         type: String,
     },
     precio: {
-        type: String,
+        type: Number,
     },
     idCategoria: {
-        type: String,
+        type: Number,
     },
     estado: {
-        type: String,
+        type: Boolean,
     },
     imagen: {
         type: String,    
@@ -26,17 +26,10 @@ const productos = new Schema({
     descripcion: {
         type: String,    
     },
-    creacion: {
-        type: Date,  
-        default: Date.now  
-    },
-    modificacion: {
-        type: String,    
-    },
 
 },{
     timestamps: true,
-    versionKey: true,
+    versionKey: false,
 })
 
-module.exports = mongoose.model('producto', productoSchema);
+module.exports = mongoose.model('producto', productoSchema, 'producto');
