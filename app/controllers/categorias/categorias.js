@@ -1,13 +1,29 @@
-const categorias = require('../models/categorias');
+const Categoria = require("../../models/categorias");
 
-async function getcategorias(){
+async function GetCategorias() {
+    return await categoria.find({});
+  }
+  
+  async function GetCategoria(idCategoria) {
+    return await Categoria.findOne({ id: idCategoria });
+  }
+  
+  async function NewCategoria(idCategoria) {
+    const { Nombre, estado } = idCategoria;
+    return await Categoria.create({ Nombre, estado });
+  }
 
-    let data = await categorias.find({});
-
-    return data;
-
-}
+  //revisar
+  async function UpdateCategoria(idCat, body) {
+    if (!idCat) {
+      return { error: true, msg: "Campo Nombre es requerido" };
+    }
+    return await Usuario.updateOne({ idCategoria: idCat }, { $set: body });
+  }
 
 module.exports = {
-    getcategorias
+    GetCategorias,
+    GetCategoria,
+    NewCategoria,
+    UpdateCategoria,
 }
