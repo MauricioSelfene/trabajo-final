@@ -28,11 +28,8 @@ desarrollo:
 
 trabajar con un inicio de sesion en jwt 
 
-Usuario cliente o Publico solo puede buscar productos 
+Usuario cliente o Publico solo puede buscar productos  - listo
 
-Rol admin puede realizar CRUD sobre todas las colecciones - debe estar logeado
+Rol admin puede realizar CRUD sobre todas las colecciones - debe estar logeado - listo
 
 Rol vendedor solo puede CRUD Productos - debe estar logeado
-
-"Hola Mundo"
-
