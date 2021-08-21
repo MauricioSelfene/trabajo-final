@@ -3,9 +3,9 @@ const Schema = mongoose.Schema;
 
 const usuariosSchema = new Schema({
     usuario: { type: String, unique: true },
+    email: { type: String },
     clave: { type: String },
-    estado: { type: String, default: true },
-    rol: { type: String, emun: ['PUBLIC', 'ADMIN'] }
+    rol: { type: String, emun: ['VENDEDOR', 'ADMIN'] }
 }, {
     timestamps: true,
     versionKey: false
